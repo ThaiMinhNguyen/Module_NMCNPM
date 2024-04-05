@@ -1,4 +1,6 @@
 com\nemo\nmcnpm\NMCNPM.class
-com\nemo\nmcnpm\Entity\Employee.class
+com\nemo\nmcnpm\DAO\EmployeeDAO.class
 com\nemo\nmcnpm\Util\Common.class
 com\nemo\nmcnpm\Util\DbUtil.class
+com\nemo\nmcnpm\DAO\impl\EmployeeDAOImpl.class
+com\nemo\nmcnpm\Entity\Employee.class
