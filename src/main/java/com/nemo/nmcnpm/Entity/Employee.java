@@ -12,6 +12,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 
 /**
@@ -22,10 +23,11 @@ import jakarta.persistence.Entity;
 @Setter
 @ToString
 @Entity
+@Table(name = "employee")
 public class Employee {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;  
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String id;  
    
     @Column(nullable = false, length = 45, name = "fullname")
     private String fullName;
@@ -36,26 +38,31 @@ public class Employee {
     @Column(length = 15, nullable = false)
     private String password;
     
-    @Column(name = "role")
-    private String role;
+    @Column
+    private String position;
+    
+    @Column
+    private String address;
 
     public Employee() {
     }
     
-    public Employee(Integer id, String fullName, String userName, String password, String role) {
+    public Employee(String id, String fullName, String userName, String password, String position, String address) {
         this.id = id;
         this.fullName = fullName;
         this.userName = userName;
         this.password = password;
-        this.role = role;
+        this.position = position;
+        this.address = address;
     }
 
 
-    public Employee(String fullName, String userName, String password, String role) {
+    public Employee(String fullName, String userName, String password, String position, String address) {
         this.fullName = fullName;
         this.userName = userName;
         this.password = password;
-        this.role = role;
+        this.position = position;
+        this.address = address;
     }
 
     

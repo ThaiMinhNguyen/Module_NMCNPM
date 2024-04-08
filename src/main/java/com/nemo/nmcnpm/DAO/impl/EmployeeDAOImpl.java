@@ -16,11 +16,17 @@ import java.util.List;
 public class EmployeeDAOImpl implements EmployeeDAO {
 
     @Override
-    public void addEmployee(Employee employee, EntityManager em) {
-        em.getTransaction().begin();
-        em.persist(employee);
-        em.getTransaction().commit();
-        em.close();
+    public String addEmployee(Employee employee, EntityManager em) {
+        try {
+            em.getTransaction().begin();
+            em.persist(employee);
+            em.getTransaction().commit();
+            return "Đã thêm nhân viên thành công!";
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            return "ID nhân viên đã tồn tại";
+            // Re-throw the exception to handle it outside this method if needed
+        }
     }
 
     @Override
@@ -39,14 +45,17 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         e.setFullName(employee.getFullName());
         e.setPassword(employee.getPassword());
         e.setUserName(employee.getUserName());
-        e.setRole(employee.getRole());
+        e.setPosition(employee.getPosition());
+        e.setAddress(employee.getAddress());
         //em.merge(employee);
         em.getTransaction().commit();
     }
 
     @Override
-    public List<Employee> selectEmployee(EntityManager em) {
-        return em.createQuery("SELECT e FROM Employee e", Employee.class).getResultList();
+    public List<Employee> selectEmployee(String name, EntityManager em) {
+        return em.createQuery("SELECT e FROM Employee e WHERE e.name LIKE :name", Employee.class)
+                .setParameter("name", "%" + name + "%")
+                .getResultList();
     }
-    
+
 }

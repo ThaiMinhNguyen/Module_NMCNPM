@@ -14,12 +14,12 @@ import java.util.List;
  */
 public interface EmployeeDAO {
     
-    public void addEmployee(Employee employee, EntityManager em);
+    public String addEmployee(Employee employee, EntityManager em);
     
     public void deleteEmployee(Employee employee, EntityManager em);
     
     public void updateEmployee(Employee employee, EntityManager em);
     
-    public List<Employee> selectEmployee(EntityManager em);
+    public List<Employee> selectEmployee(String name, EntityManager em);
     
 }
