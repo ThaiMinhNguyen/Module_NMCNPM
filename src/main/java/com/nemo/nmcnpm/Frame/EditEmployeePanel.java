@@ -4,9 +4,13 @@
  */
 package com.nemo.nmcnpm.Frame;
 
+import com.nemo.nmcnpm.DAO.EmployeeDAO;
+import com.nemo.nmcnpm.DAO.impl.EmployeeDAOImpl;
+import com.nemo.nmcnpm.Entity.Employee;
 import jakarta.persistence.EntityManager;
 import java.awt.Frame;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,12 +23,21 @@ public class EditEmployeePanel extends javax.swing.JPanel {
      */
     private JFrame parent;
     private EntityManager em;
+    private Employee employee;
     
-    public EditEmployeePanel(JFrame parent, EntityManager em) {
+    public EditEmployeePanel(JFrame parent, EntityManager em, Employee employee) {
         initComponents();
         System.out.println("Thành công chuyển hướng");
         this.parent = parent;
         this.em = em;
+        this.employee = employee;
+        jTextField1.setText(employee.getId() + "  (can't be edited)");
+        jTextField1.setEditable(false);
+        jTextField2.setText(employee.getFullName());
+        jTextField3.setText(employee.getUserName());
+        jTextField4.setText(employee.getPassword());
+        jTextField5.setText(employee.getPosition());
+        jTextField6.setText(employee.getAddress());
         setVisible(true);
     }
 
@@ -119,7 +132,7 @@ public class EditEmployeePanel extends javax.swing.JPanel {
         });
 
         jButton2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
-        jButton2.setText("Add");
+        jButton2.setText("Edit");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -168,7 +181,7 @@ public class EditEmployeePanel extends javax.swing.JPanel {
                         .addComponent(jButton1)
                         .addGap(159, 159, 159)
                         .addComponent(jButton2)))
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addContainerGap(129, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -238,11 +251,23 @@ public class EditEmployeePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField6ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        JOptionPane jOptionPane = new JOptionPane();
+        int choosen = jOptionPane.showConfirmDialog(this,"Bạn có chắc chắn muốn hủy", "Thông báo", JOptionPane.YES_NO_OPTION);
+        if(choosen == jOptionPane.YES_OPTION){
+            SearchEditEmployeePanel searchEditEmployeePanel = new SearchEditEmployeePanel(parent, em);
+            parent.setContentPane(searchEditEmployeePanel);
+            parent.validate();
+        } else {
+            jOptionPane.getRootFrame().dispose();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        Employee editedEm = new Employee(employee.getId(), jTextField2.getText(), jTextField3.getText(), jTextField4.getText(), jTextField5.getText(), jTextField6.getText());
+        System.out.println(editedEm.getId() + " " + editedEm.getFullName());
+        EmployeeDAOImpl im = new EmployeeDAOImpl();
+        String warnText = im.updateEmployee(editedEm, em);
+        JOptionPane.showMessageDialog(this, warnText, "Thông báo", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton2ActionPerformed
 
 

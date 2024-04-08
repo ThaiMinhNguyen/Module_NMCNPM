@@ -18,7 +18,7 @@ public interface EmployeeDAO {
     
     public void deleteEmployee(Employee employee, EntityManager em);
     
-    public void updateEmployee(Employee employee, EntityManager em);
+    public String updateEmployee(Employee employee, EntityManager em);
     
     public List<Employee> selectEmployee(String name, EntityManager em);
     

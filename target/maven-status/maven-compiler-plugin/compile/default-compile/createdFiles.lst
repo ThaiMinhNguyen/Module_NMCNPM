@@ -15,8 +15,10 @@ com\nemo\nmcnpm\Frame\SearchEditEmployeePanel$3.class
 com\nemo\nmcnpm\Frame\EditEmployeePanel$8.class
 com\nemo\nmcnpm\Frame\EditEmployeePanel$3.class
 com\nemo\nmcnpm\Frame\MainPanel.class
+com\nemo\nmcnpm\Frame\SearchDeleteEmployeePanel$5.class
 com\nemo\nmcnpm\Frame\EditEmployeePanel$7.class
 com\nemo\nmcnpm\Frame\AddEmployeePanel$4.class
+com\nemo\nmcnpm\Frame\SearchEditEmployeePanel$5.class
 com\nemo\nmcnpm\Frame\EditEmployeePanel$2.class
 com\nemo\nmcnpm\Frame\SearchDeleteEmployeePanel.class
 com\nemo\nmcnpm\Frame\EditEmployeePanel$5.class
@@ -34,5 +36,6 @@ com\nemo\nmcnpm\Util\Common.class
 com\nemo\nmcnpm\Frame\AddEmployeePanel$6.class
 com\nemo\nmcnpm\Frame\SearchDeleteEmployeePanel$1.class
 com\nemo\nmcnpm\Frame\SearchEditEmployeePanel.class
+com\nemo\nmcnpm\Frame\SearchDeleteEmployeePanel$4.class
 com\nemo\nmcnpm\Frame\MainPanel$2.class
 com\nemo\nmcnpm\Frame\SearchEditEmployeePanel$4.class

@@ -11,6 +11,7 @@ import java.awt.Frame;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.PopupFactory;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -28,7 +29,6 @@ public class AddEmployeePanel extends javax.swing.JPanel {
     
     public AddEmployeePanel(JFrame parent, EntityManager em) {
         initComponents();
-        System.out.println("Thành công chuyển hướng");
         this.parent = parent;
         this.em = em;
         setVisible(true);
@@ -253,9 +253,15 @@ public class AddEmployeePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField6ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        MainPanel mainPanel = new MainPanel(parent, em);
-        parent.setContentPane(mainPanel);
-        parent.validate();
+        JOptionPane jOptionPane = new JOptionPane();
+        int choosen = jOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn xóa", "Thông báo", JOptionPane.YES_NO_OPTION);
+            if (choosen == jOptionPane.YES_OPTION) {
+                MainPanel mainPanel = new MainPanel(parent, em);
+                parent.setContentPane(mainPanel);
+                parent.validate();    
+            } else {
+                jOptionPane.getRootFrame().dispose();
+            } 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -269,7 +275,10 @@ public class AddEmployeePanel extends javax.swing.JPanel {
 //        e.setPosition(position);
         EmployeeDAOImpl im = new EmployeeDAOImpl();
         String warnText = im.addEmployee(e, em);
-        JOptionPane.showMessageDialog(this, warnText, "Thông báo", JOptionPane.INFORMATION_MESSAGE); 
+        JOptionPane.showMessageDialog(this, warnText, "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        MainPanel mainPanel = new MainPanel(parent, em);
+        parent.setContentPane(mainPanel);
+        parent.validate();
     }//GEN-LAST:event_jButton2ActionPerformed
 
 

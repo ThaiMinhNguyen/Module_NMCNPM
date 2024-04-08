@@ -32,23 +32,22 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     @Override
     public void deleteEmployee(Employee employee, EntityManager em) {
         em.getTransaction().begin();
-        Employee e = em.find(Employee.class, employee.getId());
-        em.remove(e);
+        em.remove(employee);
         em.getTransaction().commit();
-        em.close();
     }
 
     @Override
-    public void updateEmployee(Employee employee, EntityManager em) {
+    public String updateEmployee(Employee employee, EntityManager em) {
         Employee e = em.find(Employee.class, employee.getId());
         em.getTransaction().begin();
-        e.setFullName(employee.getFullName());
-        e.setPassword(employee.getPassword());
-        e.setUserName(employee.getUserName());
-        e.setPosition(employee.getPosition());
-        e.setAddress(employee.getAddress());
-        //em.merge(employee);
-        em.getTransaction().commit();
+        try {
+            em.merge(employee);
+            em.getTransaction().commit();
+            return "Cập nhật thành công";
+        } catch (Exception ex) {
+            em.getTransaction().rollback();
+            return "Username đã tồn tại";
+        }
     }
 
     @Override
@@ -56,7 +55,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         return em.createQuery("SELECT e FROM Employee e WHERE e.fullName LIKE :name", Employee.class)
                 .setParameter("name", "%" + name + "%")
                 .getResultList();
-        
+
     }
 
 }
