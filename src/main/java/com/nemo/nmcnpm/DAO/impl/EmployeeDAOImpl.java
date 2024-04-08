@@ -24,7 +24,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             return "Đã thêm nhân viên thành công!";
         } catch (Exception e) {
             em.getTransaction().rollback();
-            return "ID nhân viên đã tồn tại";
+            return "ID nhân viên hoặc username đã tồn tại";
             // Re-throw the exception to handle it outside this method if needed
         }
     }
@@ -53,9 +53,10 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public List<Employee> selectEmployee(String name, EntityManager em) {
-        return em.createQuery("SELECT e FROM Employee e WHERE e.name LIKE :name", Employee.class)
+        return em.createQuery("SELECT e FROM Employee e WHERE e.fullName LIKE :name", Employee.class)
                 .setParameter("name", "%" + name + "%")
                 .getResultList();
+        
     }
 
 }

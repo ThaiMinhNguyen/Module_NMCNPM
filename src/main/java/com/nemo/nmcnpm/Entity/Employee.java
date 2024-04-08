@@ -65,5 +65,7 @@ public class Employee {
         this.address = address;
     }
 
-    
+    public Object[] toObject(){
+        return new Object[]{id, fullName, userName, password, position, address};
+    }
 }

@@ -4,8 +4,12 @@
  */
 package com.nemo.nmcnpm.Frame;
 
+import com.nemo.nmcnpm.DAO.impl.EmployeeDAOImpl;
+import com.nemo.nmcnpm.Entity.Employee;
 import jakarta.persistence.EntityManager;
+import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -55,6 +59,11 @@ public class SearchEditEmployeePanel extends javax.swing.JPanel {
         jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
         jButton1.setText("Search");
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -135,6 +144,21 @@ public class SearchEditEmployeePanel extends javax.swing.JPanel {
         parent.setContentPane(mainPanel);
         parent.validate();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String name = jTextField1.getText();
+        System.out.println(name);
+        EmployeeDAOImpl im = new EmployeeDAOImpl();
+        List<Employee> emList = im.selectEmployee(name, em);
+        for(Employee i: emList){
+            System.out.println(i.getFullName());   
+        }
+        DefaultTableModel tblModel = (DefaultTableModel)jTable1.getModel();
+        tblModel.setRowCount(0);
+        for(Employee i : emList){
+            tblModel.addRow(i.toObject());
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
