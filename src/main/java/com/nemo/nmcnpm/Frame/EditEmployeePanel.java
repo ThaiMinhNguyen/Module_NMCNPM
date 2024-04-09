@@ -24,7 +24,7 @@ public class EditEmployeePanel extends javax.swing.JPanel {
     private JFrame parent;
     private EntityManager em;
     private Employee employee;
-    
+
     public EditEmployeePanel(JFrame parent, EntityManager em, Employee employee) {
         initComponents();
         System.out.println("Thành công chuyển hướng");
@@ -252,8 +252,8 @@ public class EditEmployeePanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         JOptionPane jOptionPane = new JOptionPane();
-        int choosen = jOptionPane.showConfirmDialog(this,"Bạn có chắc chắn muốn hủy", "Thông báo", JOptionPane.YES_NO_OPTION);
-        if(choosen == jOptionPane.YES_OPTION){
+        int choosen = jOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn hủy", "Thông báo", JOptionPane.YES_NO_OPTION);
+        if (choosen == jOptionPane.YES_OPTION) {
             SearchEditEmployeePanel searchEditEmployeePanel = new SearchEditEmployeePanel(parent, em);
             parent.setContentPane(searchEditEmployeePanel);
             parent.validate();
@@ -268,6 +268,9 @@ public class EditEmployeePanel extends javax.swing.JPanel {
         EmployeeDAOImpl im = new EmployeeDAOImpl();
         String warnText = im.updateEmployee(editedEm, em);
         JOptionPane.showMessageDialog(this, warnText, "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        SearchEditEmployeePanel searchEditEmployeePanel = new SearchEditEmployeePanel(parent, em);
+        parent.setContentPane(searchEditEmployeePanel);
+        parent.validate();
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
