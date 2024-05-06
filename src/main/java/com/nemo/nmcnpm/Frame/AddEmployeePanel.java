@@ -254,7 +254,7 @@ public class AddEmployeePanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         JOptionPane jOptionPane = new JOptionPane();
-        int choosen = jOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn xóa", "Thông báo", JOptionPane.YES_NO_OPTION);
+        int choosen = jOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn hủy", "Thông báo", JOptionPane.YES_NO_OPTION);
             if (choosen == jOptionPane.YES_OPTION) {
                 MainPanel mainPanel = new MainPanel(parent, em);
                 parent.setContentPane(mainPanel);
